@@ -67,5 +67,5 @@ deploy_with_req:
   script:
     - "sed -i 's/IMAGE_VERSION.*/IMAGE_VERSION=$CI_PIPELINE_ID/' /opt/ptoc/.env-compose"
   after_script:
-    - docker compose -f /opt/ptoc/docker-compose.yml  up -d
+    - docker compose  --env-file /opt/ptoc/.env-compose -f /opt/ptoc/docker-compose.yml  up -d
 
