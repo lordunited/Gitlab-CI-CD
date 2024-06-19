@@ -47,9 +47,9 @@ build_with_req:
   stage: build_with_req
   extends: .stage_with_req
   script:
-    - docker build -f Docker_req -t registry.gitlab.com/***/ptoc:$CI_PIPELINE_ID .
+    - docker build -f Docker_req -t registry.gitlab.com/***/app:$CI_PIPELINE_ID .
   after_script:
-    - docker push registry.gitlab.com/**/ptoc:$CI_PIPELINE_ID
+    - docker push registry.gitlab.com/**/app:$CI_PIPELINE_ID
 
 
 deploy_no_req:
@@ -67,5 +67,5 @@ deploy_with_req:
   script:
     - "sed -i 's/IMAGE_VERSION.*/IMAGE_VERSION=$CI_PIPELINE_ID/' /opt/app/.env-compose"
   after_script:
-    - docker compose  --env-file /opt/ptoc/.env-compose -f /opt/ptoc/docker-compose.yml  up -d
+    - docker compose  --env-file /opt/app/.env-compose -f /opt/app/docker-compose.yml  up -d
 
