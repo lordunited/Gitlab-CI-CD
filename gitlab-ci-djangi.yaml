@@ -31,7 +31,7 @@ run_unitest:
   before_script: 
     - docker compose -f docker-compose-test.yml up -d 
   script:
-    - docker compose -f docker compose-test.yml exec -it ptoc "python manage.py pytest"
+    - docker compose -f docker compose-test.yml exec -it app-test "python manage.py pytest"
   after_script:
     - docker compose -f docker-compose-test.yml down -v 
 
